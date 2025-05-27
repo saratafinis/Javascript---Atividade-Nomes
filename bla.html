@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formatar Nome</title>
+  <script>
+    function formatarNome() {
+      let nomeCompleto = document.getElementById("nome").value.trim();
+ 
+      // Palavras de ligação a serem removidas
+      const ligacoes = ["da", "das", "de", "do", "dos", "e"];
+ 
+      // Quebra o nome em partes e filtra as ligações
+      let partes = nomeCompleto.split(" ").filter(p => !ligacoes.includes(p.toLowerCase()));
+ 
+      if (partes.length < 2) {
+        document.getElementById("resultado").innerHTML = "Digite ao menos nome e sobrenome.";
+        return;
+      }
+ 
+      let sobrenome = partes[partes.length - 1]; // Último nome como sobrenome principal
+      let resto = partes.slice(0, -1).join(" ");  // O restante do nome
+ 
+      document.getElementById("resultado").innerHTML = `${sobrenome}, ${resto}`;
+    }
+  </script>
+</head>
+<body>
+  <input type="text" name="nome" id="nome" placeholder="Digite o nome completo">
+  <button onclick="formatarNome()">Formatar Nome</button><br><br>
+  <p id="resultado"></p>
+</body>
+</html>
+ 
